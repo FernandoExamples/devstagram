@@ -29,5 +29,6 @@ Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('registe
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 });

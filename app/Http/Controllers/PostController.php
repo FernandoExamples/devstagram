@@ -9,6 +9,10 @@ class PostController extends Controller
 {
     public function index(User $user)
     {
-        return view('dashboard', compact('user'));
+        return view('posts.profile', compact('user'));
+    }
+
+    public function create() {
+        return view('posts.create');
     }
 }
