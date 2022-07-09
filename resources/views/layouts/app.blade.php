@@ -10,8 +10,9 @@
 
     <title>Devstagram | @yield('title')</title>
 
+    @yield('styles')
+
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
 </head>
 
 <body class="bg-gray-100">
@@ -79,6 +80,7 @@
         Devstagram - Todos los derechos reservados {{ now()->year }} &copy;
     </footer>
 
+    @vite('resources/js/app.js')
 </body>
 
 </html>

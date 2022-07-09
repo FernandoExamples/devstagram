@@ -4,10 +4,26 @@
     Crear Nuevo Post
 @endsection
 
+@section('styles')
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+        type="text/css"
+    />
+@endsection
+
 @section('content')
     <div class="md:flex md:items-center">
         <div class="px-10 md:w-1/2">
-            Imagen Aqui
+            <form
+                id="dropzone"
+                action="{{ route('images.store') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="dropzone flex h-96 w-full flex-col items-center justify-center rounded border-2 border-dashed"
+            >
+                @csrf
+            </form>
         </div>
 
         <div class="mt-10 rounded-lg bg-white p-10 shadow-xl md:mt-0 md:w-1/2">
