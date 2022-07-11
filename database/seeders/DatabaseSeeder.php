@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         if (App::environment('local')) {
-            Post::factory(10)->create();
+            // Post::factory(10)->create();
         }
     }
 }

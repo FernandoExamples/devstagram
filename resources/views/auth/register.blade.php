@@ -43,7 +43,7 @@
                         <label
                             for="username"
                             class="mb-2 block font-bold uppercase text-gray-500"
-                        >Nombre</label>
+                        >Nombre de Usuario</label>
                         <input
                             type="text"
                             id="username"

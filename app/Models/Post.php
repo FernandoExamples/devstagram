@@ -15,4 +15,8 @@ class Post extends Model
         'image_path',
         'user_id',
     ];
+
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id')->select(['name', 'username', 'email']);
+    }
 }

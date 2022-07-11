@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function index(User $user)
     {
-        return view('posts.profile', compact('user'));
+        $posts = $user->posts()->paginate(6);
+        return view('posts.profile', compact('user', 'posts'));
     }
 
     public function create()
