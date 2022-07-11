@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -38,5 +39,12 @@ class PostController extends Controller
     {
         $post->load(['comments', 'comments.user']);
         return view('posts.show', compact('post', 'user'));
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        Storage::disk('public')->delete($post->image_path);
+        return redirect()->route('posts.index', auth()->user()->username);
     }
 }
