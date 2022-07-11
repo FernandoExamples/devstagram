@@ -16,7 +16,13 @@ class Post extends Model
         'user_id',
     ];
 
-    public function author() {
-        return $this->belongsTo(User::class, 'user_id')->select(['name', 'username', 'email']);
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id')->select(['id', 'name', 'username', 'email']);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

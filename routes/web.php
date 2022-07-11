@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -32,9 +33,12 @@ Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
-    Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
     Route::post('/images', [ImageController::class, 'store'])->name('images.store');
     Route::delete('/images', [ImageController::class, 'destroy']);
+
+    Route::post('/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
+
+Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
