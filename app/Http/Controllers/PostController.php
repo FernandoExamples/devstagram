@@ -47,4 +47,11 @@ class PostController extends Controller
         Storage::disk('public')->delete($post->image_path);
         return redirect()->route('posts.index', auth()->user()->username);
     }
+
+    public function toggleLike(Post $post)
+    {
+        $post->likes()->toggle([Auth::id()]);
+
+        return redirect()->back();
+    }
 }

@@ -25,4 +25,14 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function checkLike(User $user)
+    {
+        return $this->likes()->wherePivot('user_id', $user->id)->count() > 0;
+    }
 }
