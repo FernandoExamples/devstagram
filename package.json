@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "concurrently \"vite\" \"php artisan serve\"",
-        "build": "vite build"
+        "build": "vite build",
+        "logs": "tail -f storage/logs/laravel.log",
+        "prettier:fix": "prettier --config .prettierrc.json --write src/**/**/*.ts"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.7",
@@ -10,6 +12,7 @@
         "laravel-vite-plugin": "^0.2.1",
         "lodash": "^4.17.19",
         "postcss": "^8.4.14",
+        "prettier": "^2.7.1",
         "tailwindcss": "^3.1.5",
         "vite": "^2.9.11"
     },

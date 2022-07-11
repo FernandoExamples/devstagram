@@ -28,7 +28,7 @@
 
         <div class="mt-10 rounded-lg bg-white p-10 shadow-xl md:mt-0 md:w-1/2">
             <form
-                action="#"
+                action="{{ route('posts.store') }}"
                 method="POST"
             >
                 @csrf
@@ -69,6 +69,19 @@
                             <p class="my-2 rounded-lg bg-red-500 p-2 text-center text-sm text-white">{{ $message }} </p>
                         @enderror
                     </div>
+                </div>
+
+                <div class="mb-5">
+                    <input
+                        type="hidden"
+                        id="image_path"
+                        name="image_path"
+                        value="{{ old('image_path') }}"
+                    >
+
+                    @error('image_path')
+                        <p class="my-2 rounded-lg bg-red-500 p-2 text-center text-sm text-white">La imagen es requerida</p>
+                    @enderror
                 </div>
 
                 <input
