@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ImageService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -11,20 +12,13 @@ class ImageController extends Controller
 {
     public function store(Request $request)
     {
-        $image = $request->file('file');
-        $imageName = 'img/' . Str::uuid() . '.' . $image->extension();
-        $imagePath = Storage::disk('public')->path($imageName);
-
-        $newImage = Image::make($image);
-        $newImage->fit(1000, 1000);
-        $newImage->save($imagePath);
-
+        $imageName = ImageService::storeImage($request->file('file'), 'posts');
         return $imageName;
     }
 
     public function destroy(Request $request)
     {
-        Storage::disk('public')->delete($request->image_path);
+        ImageService::deleteImage($request->image_path);
         return "Imagen Eliminada";
     }
 }

@@ -8,7 +8,8 @@
     <div class="flex justify-center">
         <div class="flex w-full flex-col items-center md:w-8/12 md:flex-row lg:w-6/12">
             <div class="w-8/12 px-5 lg:w-6/12">
-                <img src="{{ asset('img/usuario.svg') }}" alt="Imagen usuario">
+                <img src="{{ $user->image_path ? 'storage/' . $user->image_path : asset('img/usuario.svg') }}"
+                     alt="Imagen usuario">
             </div>
             <div class="flex flex-col items-center px-5 py-10 md:w-8/12 md:items-start md:justify-center lg:w-6/12">
 
