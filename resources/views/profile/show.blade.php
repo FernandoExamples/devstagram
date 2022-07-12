@@ -37,7 +37,7 @@
                 </p>
 
                 <p class="mb-3 text-sm font-bold text-gray-800">
-                    0 <span class="font-normal">Post</span>
+                    {{$user->posts->count()}} <span class="font-normal">Post</span>
                 </p>
             </div>
         </div>

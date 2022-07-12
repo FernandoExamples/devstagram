@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +40,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        Storage::disk('public')->delete($post->image_path);
+        ImageService::deleteImage($post->image_path);
         return redirect()->route('profile.index', auth()->user()->username);
     }
 
