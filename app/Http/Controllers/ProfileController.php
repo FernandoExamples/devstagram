@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function index(User $user)
     {
-        $posts = $user->posts()->paginate(6);
+        $posts = $user->posts()->with('author')->paginate(6);
         return view('profile.show', compact('user', 'posts'));
     }
 

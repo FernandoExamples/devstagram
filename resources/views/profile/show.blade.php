@@ -62,23 +62,7 @@
     <section class="container mx-auto mt-10">
         <h2 class="my-10 text-center text-4xl font-black">Publicaciones</h2>
 
-        @if ($posts->count() > 0)
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols4 gap-6">
-                @foreach ($posts as $post)
-                    <div>
-                        <a href="{{ route('posts.show', ['user' => $user->username, 'post' => $post->id]) }}">
-                            <img src="/storage/{{ $post->image_path }}" alt="Imagen del Post {{ $post->title }}">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-
-            <div>
-                {{ $posts->links() }}
-            </div>
-        @else
-            <p class="text-gray-600 uppercase text-sm text-center font-bold">Sin publicaciones</p>
-        @endif
+        <x-post-list :posts="$posts" />
 
     </section>
 @endsection
