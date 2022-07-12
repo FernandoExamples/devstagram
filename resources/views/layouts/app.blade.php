@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+          name="viewport"
+          content="width=device-width, initial-scale=1">
 
     <title>Devstagram | @yield('title')</title>
 
@@ -19,7 +18,9 @@
 
     <header class="border-b bg-white p-5 shadow">
         <div class="item-center container mx-auto flex justify-between">
-            <h1 class="text-3xl font-black">Devstagram</h1>
+            <a href="{{ route('index') }}" class="text-3xl font-black">
+                <h1>Devstagram</h1>
+            </a>
             @auth
                 <nav class="flex items-center gap-2">
                     {{-- blade-formatter-disable --}}
@@ -34,21 +35,18 @@
                     {{-- blade-formatter-enable --}}
 
                     <a
-                        class="font-bold text-gray-600"
-                        href="{{ route('profile.index', auth()->user()->username) }}"
-                    >
+                       class="font-bold text-gray-600"
+                       href="{{ route('profile.index', auth()->user()->username) }}">
                         Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
                     </a>
 
                     <form
-                        method="POST"
-                        action="{{ route('logout') }}"
-                    >
+                          method="POST"
+                          action="{{ route('logout') }}">
                         @csrf
                         <button
-                            type="submit"
-                            class="font-bold uppercase text-gray-600"
-                        >Cerrar Sesión</button>
+                                type="submit"
+                                class="font-bold uppercase text-gray-600">Cerrar Sesión</button>
                     </form>
                 </nav>
             @endauth
@@ -56,13 +54,11 @@
             @guest
                 <nav class="flex items-center gap-2">
                     <a
-                        href="{{ route('login') }}"
-                        class="font-bold uppercase text-gray-600"
-                    >Login</a>
+                       href="{{ route('login') }}"
+                       class="font-bold uppercase text-gray-600">Login</a>
                     <a
-                        href="/crear-cuenta"
-                        class="font-bold uppercase text-gray-600"
-                    >Crear cuenta</a>
+                       href="/crear-cuenta"
+                       class="font-bold uppercase text-gray-600">Crear cuenta</a>
                 </nav>
             @endguest
         </div>
