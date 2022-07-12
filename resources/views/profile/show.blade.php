@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    Perfil: {{ $user->username }}
+    @if ($user->isMe())
+        Tu Perfil
+    @else
+        Perfil: {{ $user->username }}
+    @endif
 @endsection
 
 @section('content')
@@ -29,16 +33,28 @@
                 </div>
 
                 <p class="mb-3 text-sm font-bold text-gray-800">
-                    0 <span class="font-normal">Seguidores</span>
+                    {{ $user->followers->count() }} <span class="font-normal">Seguidores</span>
                 </p>
 
                 <p class="mb-3 text-sm font-bold text-gray-800">
-                    0 <span class="font-normal">Suigiendo</span>
+                    {{ $user->following->count() }} <span class="font-normal">Siguiendo</span>
                 </p>
 
                 <p class="mb-3 text-sm font-bold text-gray-800">
-                    {{$user->posts->count()}} <span class="font-normal">Post</span>
+                    {{ $user->posts->count() }} <span class="font-normal">Post</span>
                 </p>
+
+                @auth
+                    @if (!$user->isMe())
+                        <form action="{{ route('follow.toggle', $user) }}" method="POST">
+                            @csrf
+                            <input type="submit"
+                                   class="bg-blue-600 text-white uppercase rounded-lg font-bold cursor-pointer text-xs px-3 py-1"
+                                   value="{{ auth()->user()->iMFollowingThisUser($user)? 'Dejar de Seguir': 'Seguir' }}">
+                        </form>
+                    @endif
+                @endauth
+
             </div>
         </div>
     </div>

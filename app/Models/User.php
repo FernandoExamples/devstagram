@@ -54,8 +54,28 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'likes');
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
     public function isMe()
     {
         return $this->id == auth()->user()->id;
+    }
+
+    public function iMFollowingThisUser(User $user)
+    {
+        return $this->following()->wherePivot('user_id', $user->id)->count() > 0;
+    }
+
+    public function isMyFollower(User $user)
+    {
+        return $this->followers()->wherePivot('follower_id', $user->id)->count() > 0;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -49,3 +50,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/{user:username}', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/{user:username}/follow', [FollowerController::class, 'toggleFollow'])->name('follow.toggle');
