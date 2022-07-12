@@ -11,6 +11,7 @@
 
     @yield('styles')
 
+    @livewireStyles
     @vite('resources/css/app.css')
 </head>
 
@@ -77,6 +78,7 @@
     </footer>
 
     @vite('resources/js/app.js')
+    @livewireScripts
 </body>
 
 </html>

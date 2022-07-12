@@ -43,11 +43,4 @@ class PostController extends Controller
         ImageService::deleteImage($post->image_path);
         return redirect()->route('profile.index', auth()->user()->username);
     }
-
-    public function toggleLike(Post $post)
-    {
-        $post->likes()->toggle([Auth::id()]);
-
-        return redirect()->back();
-    }
 }
