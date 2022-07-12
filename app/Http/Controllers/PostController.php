@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index(User $user)
-    {
-        $posts = $user->posts()->paginate(6);
-        return view('posts.profile', compact('user', 'posts'));
-    }
 
     public function create()
     {
@@ -32,7 +27,7 @@ class PostController extends Controller
 
         User::find(Auth::id())->posts()->create($body);
 
-        return redirect()->route('posts.index', auth()->user()->username);
+        return redirect()->route('profile.index', auth()->user()->username);
     }
 
     public function show(User $user, Post $post)
@@ -45,7 +40,7 @@ class PostController extends Controller
     {
         $post->delete();
         Storage::disk('public')->delete($post->image_path);
-        return redirect()->route('posts.index', auth()->user()->username);
+        return redirect()->route('profile.index', auth()->user()->username);
     }
 
     public function toggleLike(Post $post)

@@ -35,7 +35,7 @@
 
                     <a
                         class="font-bold text-gray-600"
-                        href="{{ route('posts.index', auth()->user()->username) }}"
+                        href="{{ route('profile.index', auth()->user()->username) }}"
                     >
                         Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
                     </a>

@@ -35,4 +35,8 @@ class Post extends Model
     {
         return $this->likes()->wherePivot('user_id', $user->id)->count() > 0;
     }
+
+    public function isMyPost() {
+        return $this->user_id == auth()->user()->id;
+    }
 }

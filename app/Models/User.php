@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes');
     }
+
+    public function isMe()
+    {
+        return $this->id == auth()->user()->id;
+    }
 }

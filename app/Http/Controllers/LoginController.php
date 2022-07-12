@@ -9,7 +9,7 @@ class LoginController extends Controller
     public function index()
     {
         if (auth()->check()) {
-            return redirect()->route('posts.index', ['user' => auth()->user()->username]);
+            return redirect()->route('profile.index', ['user' => auth()->user()->username]);
         }
         return view('auth.login');
     }
@@ -25,7 +25,7 @@ class LoginController extends Controller
             return back()->with('message', 'Credenciales Incorrectas');
         }
 
-        return redirect()->route('posts.index', ['user' => auth()->user()->username]);
+        return redirect()->route('profile.index', ['user' => auth()->user()->username]);
     }
 
     public function logout()

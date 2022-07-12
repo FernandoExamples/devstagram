@@ -32,7 +32,7 @@
             </div>
 
             @auth
-                @if ($post->user_id == auth()->user()->id)
+                @if ($post->isMyPost())
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                         @csrf
                         @method('delete')
@@ -74,7 +74,7 @@
                     @if ($post->comments->count() > 0)
                         @foreach ($post->comments as $comment)
                             <div class="p-5 border-gray-300 border-b">
-                                <a href="{{ route('posts.index', $comment->user) }}" class="font-bold">
+                                <a href="{{ route('profile.index', $comment->user) }}" class="font-bold">
                                     {{ $comment->user->username }}
                                     @if ($post->user_id == $comment->user->id)
                                         <span class="text-xs text-gray-500">(Autor)</span>
